@@ -1,56 +1,9 @@
-# Node.js Express API with TypeScript 4
+## Rappel !!!
+npm i // installe les dependences du projet
+npm run start // lance le projet sur le port 8000
 
-
-![CircleCI branch](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser/master.svg?style=flat-square)
-![npm](https://img.shields.io/npm/dm/localeval.svg?style=flat-square)
-![Plugin on redmine.org](https://img.shields.io/redmine/plugin/stars/redmine_xlsx_format_issue_exporter.svg?style=flat-square)
-![onix](https://img.shields.io/badge/onix-systems-blue.svg)
-
-> Node.js Express API with TypeScript 4. Supports MongoDB
-
-## Description
-This generator will help you to build your own Node.js Express Mongodb API using TypeScript 4.
-
-### Project Introduction
-- suppot ES6/ES7 features
-- using tslint followed [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-
-## Features
-##### Authentication:
-- passport local strategy
-- jwt authentication
-- OAuth2.0 Server (Authorization code grant, Refresh token grant)
-##### Session Storage:
-- MongoDB
-- Redis
-##### Integration testing
-- mocha
-- chai
-- supertest
-
-## Requirements
-
-- node >= 14
-- npm >= 6
-- mongodb >= 4.0
-- typescript >= 4.0
-
-## Installation
-
-First, install [Yeoman](http://yeoman.io) and generator-node-express-typescript-api using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
-
-```bash
-npm install -g yo
-npm install -g generator-node-express-typescript-api
-```
-
-Then generate your new project:
-
-```bash
-yo node-express-typescript-api
-```
 ## App skeleton
-```
+Rappel du squelette de base issue de express-generator-typescript-api
 .
 ├── LICENSE
 ├── README.md

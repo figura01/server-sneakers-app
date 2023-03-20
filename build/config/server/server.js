@@ -22,7 +22,7 @@ Middleware.initErrorHandler(app);
 /**
  * sets port 3000 to default or unless otherwise specified in the environment
  */
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 /**
  * sets secret to 'superSecret', otherwise specified in the environment
  */
