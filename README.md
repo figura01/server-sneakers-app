@@ -1,5 +1,17 @@
 ## Rappel !!!
 npm i // installe les dependences du projet
+
+## Les variables d'environnement
+créer le fichier .env et compléter les différentes variable
+
+MONGODB_LOCAL_URI=mongodb://localhost:27017/
+MONGODB_DB_MAIN=sneakers_db
+PORT=8000
+SECRET=###########
+MONGO_USER_DB=###########
+MONGODB_PASSWORD=###########
+MONGODB_URI=###########
+
 npm run start // lance le projet sur le port 8000
 
 ## App skeleton
