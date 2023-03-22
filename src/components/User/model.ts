@@ -68,8 +68,22 @@ const UserSchema: Schema = new Schema({
         type: String,
         unique: true,
         trim: true,
+        required: true,
     },
-    password: String,
+    password: {
+        type: String,
+        require: true,
+    },
+    firstname: String,
+    lastname: String,
+    city: String,
+    zipcode: String,
+    country: String,
+    role:{
+        type: String,
+        enum: ['client', 'admin'],
+        default: 'client'    
+    },
     passwordResetToken: String,
     passwordResetExpires: Date,
     tokens: Array,
