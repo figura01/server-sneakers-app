@@ -61,6 +61,7 @@ function login(req, res, next) {
             const token = jwt.sign({ email: user.email }, server_1.default.get('secret'), {
                 expiresIn: '60m',
             });
+            console.log(token);
             res.json({
                 status: 200,
                 logged: true,

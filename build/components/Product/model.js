@@ -9,8 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bcrypt = require("bcrypt");
-const crypto = require("crypto");
 const mongoose_1 = require("mongoose");
 const connections = require("../../config/connection/connection");
 /**
@@ -42,76 +40,32 @@ const connections = require("../../config/connection/connection");
  *      items:
  *        $ref: '#/components/schemas/UserSchema'
  */
-const UserSchema = new mongoose_1.Schema({
-    email: {
-        type: String,
-        unique: true,
-        trim: true,
-        required: true,
-    },
-    password: {
-        type: String,
+const ProductSchema = new mongoose_1.Schema({
+    categorie: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: "CategorieProduct",
+        default: "",
         require: true,
     },
-    firstname: String,
-    lastname: String,
-    city: String,
-    zipcode: String,
-    country: String,
-    role: {
-        type: String,
-        enum: ['client', 'admin'],
-        default: 'client'
+    unit_price: {
+        type: Number,
+        require: true,
     },
-    passwordResetToken: String,
-    passwordResetExpires: Date,
-    tokens: Array,
+    name: {
+        type: String,
+        default: "",
+        require: true,
+    },
 }, {
-    collection: 'usermodel',
+    collection: 'productmodel',
     versionKey: false,
 }).pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const user = this; // tslint:disable-line
-        if (!user.isModified('password')) {
+        const product = this; // tslint:disable-line
+        if (!product) {
             return next();
-        }
-        try {
-            const salt = yield bcrypt.genSalt(10);
-            const hash = yield bcrypt.hash(user.password, salt);
-            user.password = hash;
-            next();
-        }
-        catch (error) {
-            return next(error);
         }
     });
 });
-/**
- * Method for comparing passwords
- */
-UserSchema.methods.comparePassword = function (candidatePassword) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const match = yield bcrypt.compare(candidatePassword, this.password);
-            return match;
-        }
-        catch (error) {
-            return error;
-        }
-    });
-};
-/**
- * Helper method for getting user's gravatar.
- */
-UserSchema.methods.gravatar = function (size) {
-    if (!size) {
-        size = 200;
-    }
-    if (!this.email) {
-        return `https://gravatar.com/avatar/?s=${size}&d=retro`;
-    }
-    const md5 = crypto.createHash('md5').update(this.email).digest('hex');
-    return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
-};
-exports.default = connections.db.model('UserModel', UserSchema);
+exports.default = connections.db.model('ProductModel', ProductSchema);
 //# sourceMappingURL=model.js.map

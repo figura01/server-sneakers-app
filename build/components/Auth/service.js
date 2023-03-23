@@ -54,6 +54,7 @@ const AuthService = {
     getUser(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                console.log('body: ', body);
                 const validate = validation_1.default.getUser(body);
                 if (validate.error) {
                     throw new Error(validate.error.message);

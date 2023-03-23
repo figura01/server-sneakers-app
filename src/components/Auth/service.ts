@@ -48,6 +48,7 @@ const AuthService: IAuthService = {
      */
     async getUser(body: IUserModel): Promise < IUserModel > {
         try {
+            console.log('body: ', body)
             const validate: Joi.ValidationResult = AuthValidation.getUser(body);
 
             if (validate.error) {

@@ -50,7 +50,7 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
         const token: string = jwt.sign({ email: user.email }, app.get('secret'), {
             expiresIn: '60m',
         });
-
+        console.log(token);
         res.json({
             status: 200,
             logged: true,

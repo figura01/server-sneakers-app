@@ -9,6 +9,8 @@ const swaggerUi = require("swagger-ui-express");
 const jwtConfig = require("../config/middleware/jwtAuth");
 const AuthRouter_1 = require("./AuthRouter");
 const UserRouter_1 = require("./UserRouter");
+const ProductRouter_1 = require("./ProductRouter");
+const CategorieProductRouter_1 = require("./CategorieProductRouter");
 const swaggerDef = require('../../swaggerDef');
 /**
  * @export
@@ -23,6 +25,22 @@ function init(app) {
      * @constructs
      */
     app.use('/v1/users', jwtConfig.isAuthenticated, UserRouter_1.default);
+    /***************** */
+    /**
+     * @description
+     *  Forwards any requests to the /v1/cproducts URI to our ProductRouter
+     *  Also, check if user authenticated
+     * @constructs
+     */
+    app.use('/v1/products', ProductRouter_1.default);
+    /***************** */
+    /**
+     * @description
+     *  Forwards any requests to the /v1/categorie-products URI to our CategorieProductRouter
+     *  Also, check if user authenticated
+     * @constructs
+     */
+    app.use('/v1/categorie-products', CategorieProductRouter_1.default);
     /**
      * @description Forwards any requests to the /auth URI to our AuthRouter
      * @constructs
