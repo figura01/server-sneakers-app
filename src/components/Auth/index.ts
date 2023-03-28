@@ -15,6 +15,7 @@ import { IUserModel } from '../User/model';
 export async function signup(req: Request, res: Response, next: NextFunction): Promise < void > {
     try {
         const user: IUserModel = await AuthService.createUser(req.body);
+        console.log('user after create', user)
         const token: string = jwt.sign({ email: user.email }, app.get('secret'), {
             expiresIn: '60m',
         });
@@ -23,6 +24,11 @@ export async function signup(req: Request, res: Response, next: NextFunction): P
             status: 200,
             logged: true,
             token,
+            _id: user._id,
+            email: user.email,
+            firstname: user.firstname || '',
+            lastname: user.lastname || '',
+            role: user.role,
             message: 'Sign in successfull',
         });
     } catch (error) {
@@ -45,17 +51,26 @@ export async function signup(req: Request, res: Response, next: NextFunction): P
  */
 export async function login(req: Request, res: Response, next: NextFunction): Promise < void > {
     try {
-        const user: IUserModel = await AuthService.getUser(req.body);
+        let user: IUserModel = await AuthService.getUser(req.body);
 
         const token: string = jwt.sign({ email: user.email }, app.get('secret'), {
             expiresIn: '60m',
         });
-        console.log(token);
+        console.log('token: ', token);
+        console.log('user', user);
+        delete user["password"];
+        console.log(user)
+        const {_id, firstname, lastname, email, role} = user;
         res.json({
             status: 200,
             logged: true,
             token,
             message: 'Sign in successfull',
+            _id,
+            firstname,
+            lastname,
+            email,
+            role
         });
     } catch (error) {
         if (error.code === 500) {

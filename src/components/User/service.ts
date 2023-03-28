@@ -14,6 +14,7 @@ const UserService: IUserService = {
      * @memberof UserService
      */
     async findAll(): Promise < IUserModel[] > {
+        console.log('find all users');
         try {
             return await UserModel.find({});
         } catch (error) {

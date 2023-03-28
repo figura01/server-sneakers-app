@@ -24,6 +24,8 @@ const AuthService: IAuthService = {
             const user: IUserModel = new UserModel({
                 email: body.email,
                 password: body.password,
+                firstname: body.firstname,
+                lastname: body.lastname,
             });
 
             const query: IUserModel = await UserModel.findOne({
@@ -31,7 +33,7 @@ const AuthService: IAuthService = {
             });
 
             if (query) {
-                throw new Error('This email already exists');
+                throw new Error('Cet addresse email est déjà utilisé');
             }
 
             const saved: IUserModel = await user.save();
@@ -65,7 +67,7 @@ const AuthService: IAuthService = {
                 return user;
             }
 
-            throw new Error('Invalid password or email');
+            throw new Error("Le password ou l'email est invalide");
         } catch (error) {
             throw new Error(error);
         }

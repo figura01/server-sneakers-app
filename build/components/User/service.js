@@ -23,6 +23,7 @@ const UserService = {
      */
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('find all users');
             try {
                 return yield model_1.default.find({});
             }

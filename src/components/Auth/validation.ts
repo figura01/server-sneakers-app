@@ -29,6 +29,8 @@ class AuthValidation extends Validation {
             email: Joi.string().email({
                 minDomainSegments: 2,
             }).required(),
+            firstname: Joi.string(),
+            lastname: Joi.string(),
         });
 
         return schema.validate(params);

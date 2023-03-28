@@ -25,6 +25,7 @@ function signup(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const user = yield service_1.default.createUser(req.body);
+            console.log('user after create', user);
             const token = jwt.sign({ email: user.email }, server_1.default.get('secret'), {
                 expiresIn: '60m',
             });
@@ -32,6 +33,11 @@ function signup(req, res, next) {
                 status: 200,
                 logged: true,
                 token,
+                _id: user._id,
+                email: user.email,
+                firstname: user.firstname || '',
+                lastname: user.lastname || '',
+                role: user.role,
                 message: 'Sign in successfull',
             });
         }
@@ -57,16 +63,25 @@ exports.signup = signup;
 function login(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const user = yield service_1.default.getUser(req.body);
+            let user = yield service_1.default.getUser(req.body);
             const token = jwt.sign({ email: user.email }, server_1.default.get('secret'), {
                 expiresIn: '60m',
             });
-            console.log(token);
+            console.log('token: ', token);
+            console.log('user', user);
+            delete user["password"];
+            console.log(user);
+            const { _id, firstname, lastname, email, role } = user;
             res.json({
                 status: 200,
                 logged: true,
                 token,
                 message: 'Sign in successfull',
+                _id,
+                firstname,
+                lastname,
+                email,
+                role
             });
         }
         catch (error) {

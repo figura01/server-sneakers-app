@@ -31,12 +31,14 @@ const AuthService = {
                 const user = new model_1.default({
                     email: body.email,
                     password: body.password,
+                    firstname: body.firstname,
+                    lastname: body.lastname,
                 });
                 const query = yield model_1.default.findOne({
                     email: body.email,
                 });
                 if (query) {
-                    throw new Error('This email already exists');
+                    throw new Error('Cet addresse email est déjà utilisé');
                 }
                 const saved = yield user.save();
                 return saved;
@@ -66,7 +68,7 @@ const AuthService = {
                 if (isMatched) {
                     return user;
                 }
-                throw new Error('Invalid password or email');
+                throw new Error("Le password ou l'email est invalide");
             }
             catch (error) {
                 throw new Error(error);

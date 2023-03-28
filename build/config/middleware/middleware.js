@@ -1,19 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.initErrorHandler = exports.configure = void 0;
+const dotenv = require("dotenv");
+dotenv.config();
 const bodyParser = require("body-parser");
 const compression = require("compression");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const express = require("express");
 const helmet = require("helmet");
 const index_1 = require("../error/index");
 const sendHttpError_1 = require("../error/sendHttpError");
+console.log(process.env.FRONTEND_LOCAL_URL);
 /**
  * @export
  * @param {express.Application} app
  */
 function configure(app) {
     // express middleware
+    //const allowedOrigins = ['*','http://localhost:3000'];
+    // providing a Connect/Express middleware that can be used to enable CORS with various options
+    app.use(express.json());
+    app.use(cors());
     app.use(bodyParser.urlencoded({
         extended: false,
     }));
@@ -24,12 +32,12 @@ function configure(app) {
     app.use(compression());
     // helps you secure your Express apps by setting various HTTP headers
     app.use(helmet());
-    // providing a Connect/Express middleware that can be used to enable CORS with various options
-    app.use(cors());
     // custom errors
     app.use(sendHttpError_1.sendHttpErrorModule);
     // cors
     app.use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", '*');
+        res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS ');
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,'
             + ' Content-Type, Accept,'

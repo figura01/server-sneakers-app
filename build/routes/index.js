@@ -11,6 +11,7 @@ const AuthRouter_1 = require("./AuthRouter");
 const UserRouter_1 = require("./UserRouter");
 const ProductRouter_1 = require("./ProductRouter");
 const CategorieProductRouter_1 = require("./CategorieProductRouter");
+const AdminRouter_1 = require("./admin/AdminRouter");
 const swaggerDef = require('../../swaggerDef');
 /**
  * @export
@@ -41,6 +42,8 @@ function init(app) {
      * @constructs
      */
     app.use('/v1/categorie-products', CategorieProductRouter_1.default);
+    /****** ADMIN ROUTER */
+    app.use('/v1/admin', AdminRouter_1.default);
     /**
      * @description Forwards any requests to the /auth URI to our AuthRouter
      * @constructs

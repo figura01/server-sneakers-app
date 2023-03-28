@@ -8,7 +8,7 @@ import * as connections from '../../config/connection/connection';
  * @extends {Document}
  */
 export interface IProductModel extends Document {
-    categorie: string;
+    categorie_product: string;
     unit_price: number;
     name: string;
 }

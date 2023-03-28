@@ -9,6 +9,8 @@ import UserRouter from './UserRouter';
 import ProductRouter from './ProductRouter';
 import CategorieProductRouter from './CategorieProductRouter';
 
+import AdminRouter from './admin/AdminRouter';
+
 const swaggerDef = require('../../swaggerDef');
 
 /**
@@ -43,7 +45,8 @@ export function init(app: express.Application): void {
      */
     app.use('/v1/categorie-products', CategorieProductRouter);
 
-
+    /****** ADMIN ROUTER */
+    app.use('/v1/admin', AdminRouter);
     /**
      * @description Forwards any requests to the /auth URI to our AuthRouter
      * @constructs

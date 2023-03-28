@@ -9,6 +9,10 @@ export type AuthToken = {
     kind: string,
 };
 
+export type RoleUser = {
+    enum: ["client", "admin"];
+}
+
 /**
  * @export
  * @interface IUserModel
@@ -17,12 +21,14 @@ export type AuthToken = {
 export interface IUserModel extends Document {
     email: string;
     password: string;
+    firstname: string;
+    lastname: string;
     passwordResetToken: string;
     passwordResetExpires: Date;
 
     facebook: string;
     tokens: AuthToken[];
-
+    role: RoleUser[]
     profile: {
         name: string,
         gender: string,
