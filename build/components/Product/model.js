@@ -62,11 +62,29 @@ const ProductSchema = new mongoose_1.Schema({
     },
     description: {
         type: String,
-    }
+    },
+    gamme: {
+        type: String,
+    },
+    images: [
+        {
+            type: String,
+        },
+    ],
+    colors: [
+        {
+            type: String,
+        },
+    ],
+    sizes: [
+        {
+            type: Number,
+        },
+    ],
 }, {
-    collection: 'productmodel',
+    collection: "productmodel",
     versionKey: false,
-}).pre('save', function (next) {
+}).pre("save", function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const product = this; // tslint:disable-line
         if (!product) {

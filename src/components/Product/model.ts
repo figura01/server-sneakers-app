@@ -1,4 +1,4 @@
-import { Document, Schema } from 'mongoose';
+import { Document, Schema, Types } from 'mongoose';
 import { NextFunction } from 'express';
 import * as connections from '../../config/connection/connection';
 // import { CategorieProductModel } from '../CategorieProduct/model';
@@ -12,7 +12,12 @@ export interface IProductModel extends Document {
     unit_price: number;
     name: string;
     quantity: number;
+    // brand
     description?: string;
+    gamme?: string;
+    images?: Types.Array<string>;
+    colors?: Types.Array<string>;
+    sizes?: Types.Array<number>;
 }
 
 /**
@@ -44,38 +49,59 @@ export interface IProductModel extends Document {
  *      items:
  *        $ref: '#/components/schemas/UserSchema'
  */
-const ProductSchema: Schema = new Schema({
+const ProductSchema: Schema = new Schema(
+  {
     categorie: {
-        type: Schema.Types.ObjectId,
-        ref: "categorieProductModel",
-        default: "",
-        require: true,
+      type: Schema.Types.ObjectId,
+      ref: "categorieProductModel",
+      default: "",
+      require: true,
     },
     unit_price: {
-        type: Number,
-        require: true,
+      type: Number,
+      require: true,
     },
     name: {
-        type: String,
-        default: "",
-        require: true,
+      type: String,
+      default: "",
+      require: true,
     },
     quantity: {
-        type: Number,
-        default: 1,
+      type: Number,
+      default: 1,
     },
     description: {
+      type: String,
+    },
+    gamme: {
+      type: String,
+    },
+    images: [
+      {
         type: String,
-    }
-}, {
-    collection: 'productmodel',
+      },
+    ],
+    colors: [
+      {
+        type: String,
+      },
+    ],
+    sizes: [
+      {
+        type: Number,
+      },
+    ],
+  },
+  {
+    collection: "productmodel",
     versionKey: false,
-}).pre('save', async function (next: NextFunction): Promise < void > {
-    const product: IProductModel = this; // tslint:disable-line
+  }
+).pre("save", async function (next: NextFunction): Promise<void> {
+  const product: IProductModel = this; // tslint:disable-line
 
-    if (!product) {
-        return next();
-    }
+  if (!product) {
+    return next();
+  }
 });
 
 
