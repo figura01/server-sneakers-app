@@ -24,7 +24,9 @@ class ProductValidation extends validation_1.default {
         const schema = Joi.object().keys({
             unit_price: Joi.number().required(),
             categorie: Joi.string().required(),
-            name: Joi.string().required()
+            name: Joi.string().required(),
+            description: Joi.string(),
+            quantity: Joi.number(),
         });
         return schema.validate(params);
     }

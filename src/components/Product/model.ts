@@ -12,6 +12,7 @@ export interface IProductModel extends Document {
     unit_price: number;
     name: string;
     quantity: number;
+    description?: string;
 }
 
 /**
@@ -62,6 +63,9 @@ const ProductSchema: Schema = new Schema({
     quantity: {
         type: Number,
         default: 1,
+    },
+    description: {
+        type: String,
     }
 }, {
     collection: 'productmodel',

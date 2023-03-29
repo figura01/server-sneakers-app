@@ -56,6 +56,13 @@ const ProductSchema = new mongoose_1.Schema({
         default: "",
         require: true,
     },
+    quantity: {
+        type: Number,
+        default: 1,
+    },
+    description: {
+        type: String,
+    }
 }, {
     collection: 'productmodel',
     versionKey: false,
