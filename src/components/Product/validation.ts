@@ -25,11 +25,15 @@ class ProductValidation extends Validation {
         params: IProductModel,
     ): Joi.ValidationResult {
         const schema: Joi.Schema = Joi.object().keys({
-            unit_price: Joi.number().required(),
-            categorie: Joi.string().required(),
-            name: Joi.string().required(),
-            description: Joi.string(),
-            quantity: Joi.number(),
+          unit_price: Joi.number().required(),
+          categorie: Joi.string().required(),
+          name: Joi.string().required(),
+          description: Joi.string(),
+          quantity: Joi.number(),
+          gamme: Joi.string(),
+          images: Joi.array().items(Joi.string()),
+          colors: Joi.array().items(Joi.string()),
+          sizes: Joi.array().items(Joi.number()),
         });
 
         return schema.validate(params);
