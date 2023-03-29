@@ -43,7 +43,11 @@ function init(app) {
      */
     app.use('/v1/categorie-products', CategorieProductRouter_1.default);
     /****** ADMIN ROUTER */
-    app.use('/v1/admin', AdminRouter_1.default);
+    /**
+     * @description Forwards any requests to the /auth URI to our AuthRouter
+     * @constructs
+     */
+    app.use('/v1/admin', jwtConfig.isAuthenticated, AdminRouter_1.default);
     /**
      * @description Forwards any requests to the /auth URI to our AuthRouter
      * @constructs

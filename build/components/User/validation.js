@@ -22,12 +22,13 @@ class UserValidation extends validation_1.default {
      */
     createUser(params) {
         const schema = Joi.object().keys({
-            passeword: Joi.string().required(),
+            password: Joi.string().required(),
             email: Joi.string().email({
                 minDomainSegments: 2,
             }).required(),
             firstname: Joi.string(),
             lastname: Joi.string(),
+            role: Joi.string(),
         });
         return schema.validate(params);
     }

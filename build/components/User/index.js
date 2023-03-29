@@ -60,6 +60,8 @@ exports.findOne = findOne;
 function create(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log(req);
+            console.log(req.body);
             const user = yield service_1.default.insert(req.body);
             res.status(201).json(user);
         }
@@ -69,6 +71,23 @@ function create(req, res, next) {
     });
 }
 exports.create = create;
+// /**
+//  * @export
+//  * @param {Request} req
+//  * @param {Response} res
+//  * @param {NextFunction} next
+//  * @returns {Promise < void >}
+//  */
+// export async function updateOne(req: Request, res: Response, next: NextFunction): Promise < void > {
+//     try {
+//         console.log(req);
+//         console.log(req.body);
+//         const user: IUserModel = await UserService.updateOne(req.body);
+//         res.status(201).json(user);
+//     } catch (error) {
+//         next(new HttpError(error.message.status, error.message));
+//     }
+// }
 /**
  * @export
  * @param {Request} req

@@ -25,12 +25,13 @@ class UserValidation extends Validation {
         params: IUserModel,
     ): Joi.ValidationResult {
         const schema: Joi.Schema = Joi.object().keys({
-            passeword: Joi.string().required(),
+            password: Joi.string().required(),
             email: Joi.string().email({
                 minDomainSegments: 2,
             }).required(),
             firstname: Joi.string(),
             lastname: Joi.string(),
+            role: Joi.string(),
         });
 
         return schema.validate(params);
@@ -69,6 +70,32 @@ class UserValidation extends Validation {
 
         return schema.validate(body);
     }
+
+     /**
+     * @param {IUserModel} params
+     * @returns {Joi.ValidationResult}
+     * @memberof UserValidation
+     */
+    // updateUser(
+    //     params: IUserModel,
+    //     body: {
+    //         id: string
+    //     },
+    // ):  Joi.ValidationResult {
+    //     const schema: Joi.Schema = Joi.object().keys({
+    //         password: Joi.string().required(),
+    //         email: Joi.string().email({
+    //             minDomainSegments: 2,
+    //         }).required(),
+    //         firstname: Joi.string(),
+    //         lastname: Joi.string(),
+    //         role: Joi.string(),
+    //     });
+
+    //     return schema.validate(params);
+
+    //     return schema.validate(body);
+    // }
 }
 
 export default new UserValidation();

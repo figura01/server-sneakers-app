@@ -24,7 +24,7 @@ const ProductService = {
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield model_1.default.find({});
+                return yield model_1.default.find({}).populate('categorie');
             }
             catch (error) {
                 throw new Error(error.message);

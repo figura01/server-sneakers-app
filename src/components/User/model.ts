@@ -26,16 +26,9 @@ export interface IUserModel extends Document {
     passwordResetToken: string;
     passwordResetExpires: Date;
 
-    facebook: string;
     tokens: AuthToken[];
-    role: RoleUser[]
-    profile: {
-        name: string,
-        gender: string,
-        location: string,
-        website: string,
-        picture: string,
-    };
+    role: RoleUser[];
+    avatar: string;
     comparePassword: (password: string) => Promise < boolean > ;
     gravatar: (size: number) => string;
 }

@@ -1,7 +1,7 @@
 import { Document, Schema } from 'mongoose';
 import { NextFunction } from 'express';
 import * as connections from '../../config/connection/connection';
-
+// import { CategorieProductModel } from '../CategorieProduct/model';
 /**
  * @export
  * @interface IProductModel
@@ -11,6 +11,7 @@ export interface IProductModel extends Document {
     categorie_product: string;
     unit_price: number;
     name: string;
+    quantity: number;
 }
 
 /**
@@ -45,7 +46,7 @@ export interface IProductModel extends Document {
 const ProductSchema: Schema = new Schema({
     categorie: {
         type: Schema.Types.ObjectId,
-        ref: "CategorieProduct",
+        ref: "categorieProductModel",
         default: "",
         require: true,
     },
@@ -58,6 +59,10 @@ const ProductSchema: Schema = new Schema({
         default: "",
         require: true,
     },
+    quantity: {
+        type: Number,
+        default: 1,
+    }
 }, {
     collection: 'productmodel',
     versionKey: false,

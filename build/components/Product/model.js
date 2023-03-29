@@ -43,7 +43,7 @@ const connections = require("../../config/connection/connection");
 const ProductSchema = new mongoose_1.Schema({
     categorie: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: "CategorieProduct",
+        ref: "categorieProductModel",
         default: "",
         require: true,
     },

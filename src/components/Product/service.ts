@@ -15,7 +15,7 @@ const ProductService: IProductService = {
      */
     async findAll(): Promise < IProductModel[] > {
         try {
-            return await ProductModel.find({});
+            return await ProductModel.find({}).populate('categorie');
         } catch (error) {
             throw new Error(error.message);
         }
