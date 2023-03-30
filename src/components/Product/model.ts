@@ -12,8 +12,8 @@ export interface IProductModel extends Document {
     unit_price: number;
     name: string;
     quantity: number;
-    // brand
     description?: string;
+    brand?: string;
     gamme?: string;
     images?: Types.Array<string>;
     colors?: Types.Array<string>;
@@ -71,6 +71,9 @@ const ProductSchema: Schema = new Schema(
       default: 1,
     },
     description: {
+      type: String,
+    },
+    brand: {
       type: String,
     },
     gamme: {

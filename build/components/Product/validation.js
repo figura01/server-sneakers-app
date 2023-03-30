@@ -27,6 +27,7 @@ class ProductValidation extends validation_1.default {
             name: Joi.string().required(),
             description: Joi.string(),
             quantity: Joi.number(),
+            brand: Joi.string(),
             gamme: Joi.string(),
             images: Joi.array().items(Joi.string()),
             colors: Joi.array().items(Joi.string()),

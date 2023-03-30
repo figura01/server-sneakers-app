@@ -63,6 +63,9 @@ const ProductSchema = new mongoose_1.Schema({
     description: {
         type: String,
     },
+    brand: {
+        type: String,
+    },
     gamme: {
         type: String,
     },
