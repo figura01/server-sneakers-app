@@ -18,6 +18,7 @@ const swaggerDef = require('../../swaggerDef');
  * @param {express.Application} app
  */
 export function init(app: express.Application): void {
+    app.use(express.static(path.join(__dirname, "public")));
     const router: express.Router = express.Router();
 
     /**
