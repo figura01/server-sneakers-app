@@ -7,6 +7,7 @@ import * as jwtConfig from '../config/middleware/jwtAuth';
 import AuthRouter from './AuthRouter';
 import UserRouter from './UserRouter';
 import ProductRouter from './ProductRouter';
+import OrderRouter from './OrderRouter';
 import CategorieProductRouter from './CategorieProductRouter';
 
 import AdminRouter from './admin/AdminRouter';
@@ -43,6 +44,16 @@ export function init(app: express.Application): void {
      *  Also, check if user authenticated
      * @constructs
      */
+
+    app.use('/v1/orders',OrderRouter);
+    /***************** */
+    /**
+     * @description
+     *  Forwards any requests to the /v1/categorie-products URI to our CategorieProductRouter
+     *  Also, check if user authenticated
+     * @constructs
+     */
+
     app.use('/v1/categorie-products', CategorieProductRouter);
 
     /****** ADMIN ROUTER */
