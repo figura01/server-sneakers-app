@@ -47,7 +47,7 @@ const ProductService = {
                 }
                 return yield model_1.default.findOne({
                     _id: new mongoose_1.Types.ObjectId(id),
-                });
+                }).populate('categorie');
             }
             catch (error) {
                 throw new Error(error.message);

@@ -32,8 +32,13 @@ class ProductValidation extends Validation {
           quantity: Joi.number(),
           brand: Joi.string(),
           gamme: Joi.string(),
+          main_image: Joi.string(),
           images: Joi.array().items(Joi.string()),
-          colors: Joi.array().items(Joi.string()),
+          colors: Joi.array().items({
+            label: Joi.string(),
+            value: Joi.string(),
+          }),
+          type: Joi.string(),
           sizes: Joi.array().items(Joi.number()),
         });
 

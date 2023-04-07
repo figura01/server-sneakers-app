@@ -1,4 +1,5 @@
 import { Router } from 'express';
+// import uploadCloud from '../../config/middleware/cloudinary';
 import { UserComponent } from '../../components';
 import { CategorieProductComponent } from '../../components';
 import { ProductComponent } from '../../components';
@@ -19,10 +20,10 @@ router.get('/categorie-products/:id', CategorieProductComponent.findOne);
 router.delete('/categorie-products/:id', CategorieProductComponent.remove);
 
 /** Routes Products */
-router.get('/products', CategorieProductComponent.findAll);
-router.post('/products', CategorieProductComponent.create);
-router.get('/products/:id', CategorieProductComponent.findOne);
-router.delete('/products/:id', CategorieProductComponent.remove);
+router.get('/products', ProductComponent.findAll);
+router.post('/products', ProductComponent.create);
+router.get('/products/:id', ProductComponent.findOne);
+router.delete('/products/:id', ProductComponent.remove);
 
 /**
  * @export {express.Router}

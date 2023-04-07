@@ -76,7 +76,8 @@ const ProductSchema = new mongoose_1.Schema({
     ],
     colors: [
         {
-            type: String,
+            label: String,
+            value: String,
         },
     ],
     sizes: [
@@ -84,6 +85,9 @@ const ProductSchema = new mongoose_1.Schema({
             type: Number,
         },
     ],
+    main_image: {
+        type: String
+    },
 }, {
     collection: "productmodel",
     versionKey: false,

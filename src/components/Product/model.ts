@@ -1,12 +1,18 @@
 import { Document, Schema, Types } from 'mongoose';
 import { NextFunction } from 'express';
 import * as connections from '../../config/connection/connection';
+import { string } from 'joi';
 // import { CategorieProductModel } from '../CategorieProduct/model';
 /**
  * @export
  * @interface IProductModel
  * @extends {Document}
  */
+interface IColorsProduct {
+    label: string;
+    value: string;
+}
+
 export interface IProductModel extends Document {
     categorie_product: string;
     unit_price: number;
@@ -16,8 +22,9 @@ export interface IProductModel extends Document {
     brand?: string;
     gamme?: string;
     images?: Types.Array<string>;
-    colors?: Types.Array<string>;
+    colors?: IColorsProduct;
     sizes?: Types.Array<number>;
+    main_image?: string;
 }
 
 /**
@@ -85,15 +92,19 @@ const ProductSchema: Schema = new Schema(
       },
     ],
     colors: [
-      {
-        type: String,
-      },
+        {
+            label: String,
+            value: String,
+        },
     ],
     sizes: [
       {
         type: Number,
       },
     ],
+    main_image: {
+        type: String
+    },
   },
   {
     collection: "productmodel",

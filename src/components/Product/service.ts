@@ -38,7 +38,7 @@ const ProductService: IProductService = {
 
             return await ProductModel.findOne({
                 _id: new Types.ObjectId(id),
-            });
+            }).populate('categorie');
         } catch (error) {
             throw new Error(error.message);
         }
