@@ -25,12 +25,8 @@ class OrderValidation extends Validation {
         params: IOrderModel,
     ): Joi.ValidationResult {
         const schema: Joi.Schema = Joi.object().keys({
-            passeword: Joi.string().required(),
-            email: Joi.string().email({
-                minDomainSegments: 2,
-            }).required(),
-            firstname: Joi.string(),
-            lastname: Joi.string(),
+            products: Joi.array().items(Joi.string()).required(),
+            owner: Joi.string().required()  
         });
 
         return schema.validate(params);
